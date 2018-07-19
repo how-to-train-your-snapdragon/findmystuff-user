@@ -6,13 +6,13 @@ import android.graphics.BitmapFactory;
 import android.net.wifi.WifiManager;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
+import android.speech.tts.TextToSpeech;
 import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.AppCompatImageView;
 import android.support.v7.widget.Toolbar;
 import android.util.Base64;
-import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -30,9 +30,15 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Locale;
 
-import android.speech.tts.TextToSpeech;
-
 import okhttp3.OkHttpClient;
+
+
+/**
+ * Main screen for the user, includes speech to text functionality to talk to the bot
+ * @author Thomas Binu
+ * @author Anitha Ramaswamy
+ * @author Ashuthosh Giri
+ */
 
 public class MainActivity extends AppCompatActivity {
 
@@ -50,13 +56,16 @@ public class MainActivity extends AppCompatActivity {
 
     AndroidWebServer androidWebServer;
 
+    Toolbar toolbar;
+
     private TextToSpeech t1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+
+        findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
         OkHttpClient okHttpClient = new OkHttpClient().newBuilder().build();
